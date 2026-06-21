@@ -360,53 +360,55 @@ const PreferencesPage = () => {
             </Accordion>
           </>
         )}
-        <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="subtitle1">{t('userToken')}</Typography>
-          </AccordionSummary>
-          <AccordionDetails className={classes.details}>
-            <TextField
-              label={t('userExpirationTime')}
-              type="date"
-              value={tokenExpiration}
-              onChange={(e) => {
-                setTokenExpiration(e.target.value);
-                setToken(null);
-              }}
-            />
-            <FormControl>
-              <OutlinedInput
-                multiline
-                rows={6}
-                readOnly
-                type="text"
-                value={token || ''}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <div className={classes.verticalActions}>
-                      <IconButton
-                        size="small"
-                        edge="end"
-                        onClick={generateToken}
-                        disabled={!!token}
-                      >
-                        <CachedIcon fontSize="small" />
-                      </IconButton>
-                      <IconButton
-                        size="small"
-                        edge="end"
-                        onClick={() => navigator.clipboard.writeText(token)}
-                        disabled={!token}
-                      >
-                        <ContentCopyIcon fontSize="small" />
-                      </IconButton>
-                    </div>
-                  </InputAdornment>
-                }
+        {admin && (
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography variant="subtitle1">{t('userToken')}</Typography>
+            </AccordionSummary>
+            <AccordionDetails className={classes.details}>
+              <TextField
+                label={t('userExpirationTime')}
+                type="date"
+                value={tokenExpiration}
+                onChange={(e) => {
+                  setTokenExpiration(e.target.value);
+                  setToken(null);
+                }}
               />
-            </FormControl>
-          </AccordionDetails>
-        </Accordion>
+              <FormControl>
+                <OutlinedInput
+                  multiline
+                  rows={6}
+                  readOnly
+                  type="text"
+                  value={token || ''}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <div className={classes.verticalActions}>
+                        <IconButton
+                          size="small"
+                          edge="end"
+                          onClick={generateToken}
+                          disabled={!!token}
+                        >
+                          <CachedIcon fontSize="small" />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          edge="end"
+                          onClick={() => navigator.clipboard.writeText(token)}
+                          disabled={!token}
+                        >
+                          <ContentCopyIcon fontSize="small" />
+                        </IconButton>
+                      </div>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </AccordionDetails>
+          </Accordion>
+        )}
         {!readonly && (
           <>
             <Accordion>

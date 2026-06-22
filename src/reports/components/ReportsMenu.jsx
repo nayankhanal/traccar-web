@@ -100,12 +100,14 @@ const ReportsMenu = () => {
       </List>
       <Divider />
       <List>
-        <MenuItem
-          title={t('sharedLogs')}
-          link="/reports/logs"
-          icon={<NotesIcon />}
-          selected={location.pathname === '/reports/logs'}
-        />
+        {admin && (
+          <MenuItem
+            title={t('sharedLogs')}
+            link="/reports/logs"
+            icon={<NotesIcon />}
+            selected={location.pathname === '/reports/logs'}
+          />
+        )}
         {!readonly && (
           <MenuItem
             title={t('reportScheduled')}

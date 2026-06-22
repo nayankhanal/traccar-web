@@ -20,6 +20,7 @@ export default defineConfig(() => ({
     svgr(),
     react(),
     VitePWA({
+      registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon-180x180.png'],
       workbox: {
         navigateFallbackDenylist: [/^\/api/],

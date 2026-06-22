@@ -351,6 +351,7 @@ const UserPage = () => {
               </Button>
             </AccordionDetails>
           </Accordion>
+          {manager && (
           <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography variant="subtitle1">{t('sharedPermissions')}</Typography>
@@ -381,9 +382,11 @@ const UserPage = () => {
                 label={t('userUserLimit')}
                 disabled={!admin}
               />
-              <Button variant="outlined" color="primary" onClick={() => setRevokeDialogOpen(true)}>
-                {t('userRevokeToken')}
-              </Button>
+              {admin && (
+                <Button variant="outlined" color="primary" onClick={() => setRevokeDialogOpen(true)}>
+                  {t('userRevokeToken')}
+                </Button>
+              )}
               <FormGroup>
                 <FormControlLabel
                   control={
@@ -458,13 +461,16 @@ const UserPage = () => {
               </FormGroup>
             </AccordionDetails>
           </Accordion>
-          <EditAttributesAccordion
-            attribute={attribute}
-            attributes={item.attributes}
-            setAttributes={(attributes) => setItem({ ...item, attributes })}
-            definitions={{ ...commonUserAttributes, ...userAttributes }}
-            focusAttribute={attribute}
-          />
+          )}
+          {manager && (
+            <EditAttributesAccordion
+              attribute={attribute}
+              attributes={item.attributes}
+              setAttributes={(attributes) => setItem({ ...item, attributes })}
+              definitions={{ ...commonUserAttributes, ...userAttributes }}
+              focusAttribute={attribute}
+            />
+          )}
           {registrationEnabled && item.id === currentUser.id && !manager && (
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>

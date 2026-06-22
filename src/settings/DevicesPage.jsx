@@ -190,7 +190,7 @@ const DevicesPage = () => {
           </TableRow>
         </TableFooter>
       </Table>
-      <CollectionFab editPath="/settings/device" />
+      <CollectionFab editPath="/settings/device" disabled={deviceReadonly} />
     </PageLayout>
   );
 };

@@ -93,7 +93,7 @@ const SettingsMenu = () => {
                 selected={location.pathname.startsWith('/settings/calendar')}
               />
             )}
-            {!features.disableComputedAttributes && (
+            {admin && !features.disableComputedAttributes && (
               <MenuItem
                 title={t('sharedComputedAttributes')}
                 link="/settings/attributes"
